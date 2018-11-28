@@ -1,4 +1,5 @@
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
 
 /*
@@ -34,10 +35,26 @@ project {
 object Build : BuildType({
     name = "Build"
 
+    id ("Build")
+
     vcs {
         root(DslContext.settingsRoot)
     }
 
+    steps {
+        script {
+            name = "Set version number"
+            scriptContent = """
+                #!/bin/bash
+                HASH=%build.vcs.number%
+                SHORT_HASH=${"$"}{HASH:0:7}
+                BUILD_COUNTER=%build.counter%
+                BUILD_NUMBER="1.0.${"$"}BUILD_COUNTER.${"$"}SHORT_HASH"
+                echo "##teamcity[buildNumber '${"$"}BUILD_NUMBER"
+            """.trimIndent()
+        }
+
+    }
     triggers {
         vcs {
         }
