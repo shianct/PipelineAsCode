@@ -27,6 +27,7 @@ version = "2018.1"
 
 project {
 
+    description = "My first project"
     buildType(Build)
 }
 
