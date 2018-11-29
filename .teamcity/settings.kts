@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
+import javax.swing.text.html.HTML.Attribute.N
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -29,7 +30,12 @@ version = "2018.1"
 project {
 
     description = "My first project"
-    buildType(Build)
+    subProject {
+      name = "This is a sub project"
+        buildType(Build)
+
+    }
+
 }
 
 object Build : BuildType({
