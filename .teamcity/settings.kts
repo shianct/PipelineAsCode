@@ -42,6 +42,16 @@ object SBG : Project({
 
     id ("ServiceBusGatewayId")
 
+    subProject (BUILDSBG)
+
+})
+
+object BUILDSBG : Project ({
+    name = "Build ServiceBusGateway"
+    description = "Builds the service"
+
+    id ( "ServiceBusGatewayBuild")
+
     buildType(Build)
 })
 
