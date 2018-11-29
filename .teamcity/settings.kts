@@ -66,6 +66,7 @@ object Build : BuildType({
         schedule {
                var cron = ScheduleTrigger.SchedulingPolicy.Cron()
                 cron.seconds = "5"
+                cron.minutes= "*"
                 schedulingPolicy = cron
             }
 
