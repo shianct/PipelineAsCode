@@ -32,6 +32,7 @@ project {
     description = "My first project"
     subProject {
       name = "This is a sub project"
+        id ("SubProjectId")
         buildType(Build)
 
     }
