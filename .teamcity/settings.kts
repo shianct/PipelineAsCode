@@ -1,5 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
+import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.ScheduleTrigger
+import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.schedule
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
 import javax.swing.text.html.HTML.Attribute.N
 
@@ -59,6 +61,15 @@ object Build : BuildType({
     name = "Compile run test"
 
     id ("Compileruntest")
+
+    triggers {
+        schedule {
+               var cron = ScheduleTrigger.SchedulingPolicy.Cron()
+                cron.seconds = "5"
+                schedulingPolicy = cron
+            }
+
+    }
 
     vcs {
         root(DslContext.settingsRoot)
