@@ -58,7 +58,7 @@ object BUILDSBG : Project ({
 object Build : BuildType({
     name = "Compile run test"
 
-    id ("Compile run test")
+    id ("Compileruntest")
 
     vcs {
         root(DslContext.settingsRoot)
