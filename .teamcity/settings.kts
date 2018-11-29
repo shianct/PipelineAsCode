@@ -63,12 +63,7 @@ object Build : BuildType({
     id ("Compileruntest")
 
     triggers {
-        schedule {
-               var cron = ScheduleTrigger.SchedulingPolicy.Cron()
-                cron.seconds = "5"
-                cron.minutes= "*"
-                schedulingPolicy = cron
-            }
+        
 
     }
 
