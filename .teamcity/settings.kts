@@ -30,14 +30,20 @@ version = "2018.1"
 project {
 
     description = "My first project"
-    subProject {
-      name = "This is a sub project"
-        id ("SubProjectId")
-        buildType(Build)
 
-    }
+    subProject (SBG)
 
 }
+
+object SBG : Project({
+    name = "ServiceBusGateway"
+    uuid = "ServiceBusGatewayId"
+    description = "WebApi for authenticating a request"
+
+    id ("ServiceBusGatewayId")
+
+    buildType(Build)
+})
 
 object Build : BuildType({
     name = "Build"
