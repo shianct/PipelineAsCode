@@ -37,6 +37,7 @@ version = "2018.1"
 
 project {
     description = "My first project"
+
     subProject (SBG)
 }
 
@@ -99,8 +100,7 @@ object Build : BuildType({
     /*VCS Settings*/
     vcs {
          root(myvcsRoot)
-         root(DslContext.settingsRootId)
-    }
+        }
 
     /*Agent requirements*/
     requirements{
