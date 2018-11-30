@@ -48,10 +48,10 @@ object SBG : Project({
 
     params {
         param("RepoName" , "orders-servicebusgateway")
-        param("env.blah", "foo", "")
+        param("env.Connection", "Test123")
+        param("system.Connection", "system value")
         password("AccessKey" ,"password123")
         param("CheckIfHidden" , "HideThisValue" , "ParameterDisplay.HIDDEN")
-
     }
 
     subProject (BUILDSBG)
