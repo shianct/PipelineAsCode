@@ -68,17 +68,22 @@ object BUILDSBG : Project ({
 })
 
 object Build : BuildType({
-    name = "Compile run test"
+    name = "Compile Run Test"
 
     id ("Compileruntest")
 
     triggers {
         schedule {
+            id = ("Trigger_1")
             var cron = ScheduleTrigger.SchedulingPolicy.Cron()
             cron.seconds = "5"
             cron.minutes= "*"
             schedulingPolicy = cron
         }
+
+        vcs {
+              id = ("Trigger_2")
+            }
 
     }
 
@@ -100,8 +105,5 @@ object Build : BuildType({
         }
 
     }
-    triggers {
-        vcs {
-        }
-    }
+
 })
