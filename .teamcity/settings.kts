@@ -1,5 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.v2018_1.vcs.GitVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.MSBuildStep
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.msBuild
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_1.failureConditions.BuildFailureOnText
 import jetbrains.buildServer.configs.kotlin.v2018_1.failureConditions.failOnText
@@ -77,6 +79,13 @@ object Build : BuildType({
     id ("Compileruntest")
     artifactRules = """C:\GithubRepo\PipelineAsCode\*"""
 
+    /*Parameters*/
+    params {
+        param("MSBuild.Logging.Verbosity", "detailed")
+        param("MSBuild.AdditionalParameters", "/maxcpucount")
+        param("Build.Configuration", "Release")
+            }
+
     /*Triggers*/
     triggers {
         schedule {
@@ -129,6 +138,14 @@ object Build : BuildType({
                 BUILD_NUMBER="1.0.${"$"}BUILD_COUNTER.${"$"}SHORT_HASH"
                 echo "##teamcity[buildNumber '${"$"}BUILD_NUMBER']"
             """.trimIndent()
+        }
+
+        msBuild {
+            name = "build solution"
+            path = """C:\GithubRepo\Stringcalculator\String Calculator.sln"""
+            toolsVersion = MSBuildStep.MSBuildToolsVersion.V15_0
+            args = "/p:Configuration=%Build.Configuration% /verbosity:%MSBuild.Logging.Verbosity% %MSBuild.AdditionalParameters%"
+            param("dotNetCoverage.dotCover.home.path", "%teamcity.tool.JetBrains.dotCover.CommandLineTools.DEFAULT%")
         }
 
     }
