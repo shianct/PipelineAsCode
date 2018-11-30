@@ -91,6 +91,7 @@ object Build : BuildType({
     }
 
     val myvcsRoot = GitVcsRoot {
+        id ("new id")
         name = "https://github.com/shianct/Stringcalculator.git"
         url = "https://github.com/shianct/Stringcalculator.git"
     }
