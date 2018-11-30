@@ -91,7 +91,7 @@ object Build : BuildType({
     }
 
     val myvcsRoot = GitVcsRoot{
-        id( "PipelineAsCode_ServiceBusGateway_BuildServiceBUsGateway_HttpsGithubComShianctStringca")
+        id( "PipelineAsCode_HttpsGithubComShianctStringca")
         name = "string calc"
         url = "https://github.com/shianct/Stringcalculator.git"}
 
