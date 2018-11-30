@@ -3,6 +3,8 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.ScheduleTrigger
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.schedule
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
+import jetbrains.buildServer.configs.kotlin.v2018_1.ui.add
+import java.awt.DisplayMode
 import javax.swing.text.html.HTML.Attribute.N
 
 /*
@@ -46,6 +48,8 @@ object SBG : Project({
 
     params {
         param("RepoName" , "orders-servicebusgateway")
+        password("AccessKey" ,"password123")
+        param("CheckIfHidden" , "HideThisValue" , "ParameterDisplay.HIDDEN")
     }
 
     subProject (BUILDSBG)
