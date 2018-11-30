@@ -44,6 +44,10 @@ object SBG : Project({
 
     id ("ServiceBusGatewayId")
 
+    params {
+        param("RepoName" , "orders-servicebusgateway")
+    }
+
     subProject (BUILDSBG)
 
 })
