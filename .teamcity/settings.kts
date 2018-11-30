@@ -109,6 +109,7 @@ object Build : BuildType({
     /*VCS Settings*/
     vcs {
         root(myvcsRoot)
+        root(DslContext.settingsRootId)
         }
 
     /*Agent requirements*/
