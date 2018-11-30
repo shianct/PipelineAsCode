@@ -91,6 +91,7 @@ object Build : BuildType({
     }
 
     val myvcsRoot = GitVcsRoot{
+        id( "PipelineAsCode_Compileruntest")
         name = "string calc"
         url = "https://github.com/shianct/Stringcalculator.git"}
 
