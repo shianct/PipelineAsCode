@@ -54,6 +54,8 @@ object SBG : Project({
         param("CheckIfHidden" , "HideThisValue" , "ParameterDisplay.HIDDEN")
     }
 
+    requirement {}
+
     subProject (BUILDSBG)
 
 })
@@ -72,6 +74,8 @@ object Build : BuildType({
 
     id ("Compileruntest")
 
+    artifactRules = """C:\GithubRepo\PipelineAsCode\*"""
+
     triggers {
         schedule {
             id = ("Trigger_1")
@@ -82,8 +86,9 @@ object Build : BuildType({
         }
 
         vcs {
-              id = ("Trigger_2")
-            }
+        id = ("Trigger_2")
+    }
+
 
     }
 
