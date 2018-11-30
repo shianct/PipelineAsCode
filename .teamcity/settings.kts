@@ -1,5 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
+import jetbrains.buildServer.configs.kotlin.v2018_1.failureConditions.BuildFailureOnText
+import jetbrains.buildServer.configs.kotlin.v2018_1.failureConditions.failOnText
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.ScheduleTrigger
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.schedule
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
@@ -32,20 +34,19 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2018.1"
 
 project {
-
     description = "My first project"
-
     subProject (SBG)
-
 }
 
 object SBG : Project({
+
+/*General Settings*/
     name = "ServiceBusGateway"
     uuid = "ServiceBusGatewayUuId"
     description = "WebApi for authenticating a request"
-
     id ("ServiceBusGatewayId")
 
+/*Parameters*/
     params {
         param("RepoName" , "orders-servicebusgateway")
         param("env.Connection", "Test123")
@@ -53,26 +54,27 @@ object SBG : Project({
         password("AccessKey" ,"password123")
         param("CheckIfHidden" , "HideThisValue" , "ParameterDisplay.HIDDEN")
     }
+    /*SubProject*/
     subProject (BUILDSBG)
-
 })
 
 object BUILDSBG : Project ({
+    /*General Settings*/
     name = "Build ServiceBusGateway"
     description = "Builds the service"
-
     id ( "ServiceBusGatewayBuild")
 
+    /*Build Configuration*/
     buildType(Build)
 })
 
 object Build : BuildType({
+    /*General Settings*/
     name = "Compile Run Test"
-
     id ("Compileruntest")
-
     artifactRules = """C:\GithubRepo\PipelineAsCode\*"""
 
+    /*Triggers*/
     triggers {
         schedule {
             id = ("Trigger_1")
@@ -81,20 +83,32 @@ object Build : BuildType({
             cron.minutes= "*"
             schedulingPolicy = cron
         }
-
         vcs {
         id = ("Trigger_2")
              }
     }
 
+    /*VCS Settings*/
     vcs {
         root(DslContext.settingsRoot)
     }
 
+    /*Agent requirements*/
     requirements{
         contains("teamcity.agent.name" , "ip_172.17")
     }
 
+    /*failure conditions*/
+    failureConditions{
+        failOnText {
+            conditionType = BuildFailureOnText.ConditionType.CONTAINS
+            pattern = "FailFailFail"
+            failureMessage = "This is a predetermined failure"
+            stopBuildOnFailure = true
+        }
+    }
+
+    /*Build Steps*/
     steps {
         script {
             name = "Set version number"
