@@ -91,13 +91,14 @@ object Build : BuildType({
     }
 
     val myvcsRoot = GitVcsRoot{
-        id( "PipelineAsCode_Compileruntest")
+        id( "PipelineAsCode_ServiceBusGateway_BuildServiceBUsGateway_HttpsGithubComShianctStringca")
         name = "string calc"
         url = "https://github.com/shianct/Stringcalculator.git"}
 
     /*VCS Settings*/
     vcs {
          root(myvcsRoot)
+         root(DslContext.settingsRootId)
     }
 
     /*Agent requirements*/
