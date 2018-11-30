@@ -92,14 +92,14 @@ object Build : BuildType({
     }
 
     val myvcsRoot = GitVcsRoot {
-        id ("new id")
+        id = AbsoluteId("HttpsGithubComShianctStringcalculatorGit")
         name = "https://github.com/shianct/Stringcalculator.git"
         url = "https://github.com/shianct/Stringcalculator.git"
     }
 
     /*VCS Settings*/
     vcs {
-         root(myvcsRoot)
+        root(myvcsRoot)
         }
 
     /*Agent requirements*/
