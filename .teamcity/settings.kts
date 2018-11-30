@@ -90,10 +90,10 @@ object Build : BuildType({
              }
     }
 
-    val myvcsRoot = GitVcsRoot{
-        id( "HttpsGithubComShianctStringca")
-        name = "string calc"
-        url = "https://github.com/shianct/Stringcalculator.git"}
+    val myvcsRoot = GitVcsRoot {
+        name = "https://github.com/shianct/Stringcalculator.git"
+        url = "https://github.com/shianct/Stringcalculator.git"
+    }
 
     /*VCS Settings*/
     vcs {
