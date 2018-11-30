@@ -1,3 +1,4 @@
+import jetbrains.buildServer.configs.kotlin.v2018_1.vcs.GitVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_1.failureConditions.BuildFailureOnText
@@ -6,6 +7,7 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.ScheduleTrigger
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.schedule
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2018_1.ui.add
+import jetbrains.buildServer.configs.kotlin.v2018_1.ui.id
 import java.awt.DisplayMode
 import javax.swing.text.html.HTML.Attribute.N
 
@@ -88,9 +90,14 @@ object Build : BuildType({
              }
     }
 
+    val myvcsRoot = GitVcsRoot{
+        id ("my vcs root")
+        name = "string calc"
+        url = "https://github.com/shianct/Stringcalculator.git"}
+
     /*VCS Settings*/
     vcs {
-        root(DslContext.settingsRoot)
+         root(myvcsRoot)
     }
 
     /*Agent requirements*/
