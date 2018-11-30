@@ -53,9 +53,6 @@ object SBG : Project({
         password("AccessKey" ,"password123")
         param("CheckIfHidden" , "HideThisValue" , "ParameterDisplay.HIDDEN")
     }
-
-    requirement {}
-
     subProject (BUILDSBG)
 
 })
