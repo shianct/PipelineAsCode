@@ -87,13 +87,15 @@ object Build : BuildType({
 
         vcs {
         id = ("Trigger_2")
-    }
-
-
+             }
     }
 
     vcs {
         root(DslContext.settingsRoot)
+    }
+
+    requirements{
+        contains("teamcity.agent.name" , "ip_172.17")
     }
 
     steps {
